@@ -129,3 +129,7 @@ dmypy.json
 .idea/
 .vscode/
 .vscode
+
+
+# Model Files
+*.bin
