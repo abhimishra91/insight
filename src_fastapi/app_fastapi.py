@@ -8,6 +8,7 @@ import uvicorn
 from sentimentpro import SentimentProcessor
 from classificationpro import ClassProcessor
 
+
 class Item(BaseModel):
     model: str
     text: str
@@ -38,9 +39,9 @@ async def classification(item: Item):
     }
     """
     output_dict = dict()
-    class_process = ClassProcessor(model = item.model.lower())
+    class_process = ClassProcessor(model=item.model.lower())
     text = item.text
-    perdiction, confidence = class_process.inference(input_text = text)
+    perdiction, confidence = class_process.inference(input_text=text)
     output_dict["category"] = perdiction
     output_dict["confidence"] = confidence
     return output_dict
@@ -80,9 +81,9 @@ async def sentiment(item: Item):
     }
     """
     output_dict = dict()
-    sentiment_process = SentimentProcessor(model = item.model.lower())
+    sentiment_process = SentimentProcessor(model=item.model.lower())
     text = item.text
-    perdiction, confidence = sentiment_process.inference(input_text = text)
+    perdiction, confidence = sentiment_process.inference(input_text=text)
     output_dict["sentiment"] = perdiction
     output_dict["confidence"] = confidence
     return output_dict

@@ -71,8 +71,12 @@ class ClassProcessor:
         self.tokenized_inputs = self.tokenize(input_text, query)
         self.input_ids = self.tokenized_inputs["input_ids"]
         self.attention_mask = self.tokenized_inputs["attention_mask"]
-        self.outputs = self.model(input_ids=self.input_ids, attention_mask=self.attention_mask)
+        self.outputs = self.model(
+            input_ids=self.input_ids, attention_mask=self.attention_mask
+        )
         self._, self.pred = torch.max(self.outputs.data, dim=1)
         topic_class = self.lookup()
-        self.conf, self.pos = torch.max(torch.nn.functional.softmax(self.outputs, dim=1), dim=1)
+        self.conf, self.pos = torch.max(
+            torch.nn.functional.softmax(self.outputs, dim=1), dim=1
+        )
         return topic_class, self.conf.item()

@@ -33,7 +33,7 @@ class SentimentProcessor:
             self.tokenizer = DistilBertTokenizerFast.from_pretrained(self.path)
 
         self.model.eval()
-        self.model.load_state_dict(torch.load(self.model_path, map_location=device))        
+        self.model.load_state_dict(torch.load(self.model_path, map_location=device))
 
         with open(self.mapping) as f:
             self.config = json.load(f)
@@ -75,9 +75,12 @@ class SentimentProcessor:
         self.tokenized_inputs = self.tokenize(input_text, query)
         self.input_ids = self.tokenized_inputs["input_ids"]
         self.attention_mask = self.tokenized_inputs["attention_mask"]
-        self.outputs = self.model(input_ids=self.input_ids, attention_mask=self.attention_mask)
+        self.outputs = self.model(
+            input_ids=self.input_ids, attention_mask=self.attention_mask
+        )
         self._, self.pred = torch.max(self.outputs, dim=1)
         sentiment_class = self.lookup()
-        self.conf, self.pos = torch.max(torch.nn.functional.softmax(self.outputs, dim=1), dim=1)
+        self.conf, self.pos = torch.max(
+            torch.nn.functional.softmax(self.outputs, dim=1), dim=1
+        )
         return sentiment_class, self.conf.item()
-
