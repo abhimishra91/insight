@@ -6,6 +6,7 @@ from typing import Optional
 import uvicorn
 
 from sentimentpro import SentimentProcessor
+from classificationpro import ClassProcessor
 
 class Item(BaseModel):
     model: str
@@ -36,7 +37,13 @@ async def classification(item: Item):
         "confidence":confidence
     }
     """
-    pass
+    output_dict = dict()
+    class_process = ClassProcessor(model = item.model.lower())
+    text = item.text
+    perdiction, confidence = class_process.inference(input_text = text)
+    output_dict["category"] = perdiction
+    output_dict["confidence"] = confidence
+    return output_dict
 
 
 @app.post("/v1/ner/predict")
