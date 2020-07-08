@@ -5,7 +5,7 @@ from transformers import DistilBertModel
 class DistilBertClass(torch.nn.Module):
     def __init__(self):
         super(DistilBertClass, self).__init__()
-        self.model_layer = DistilBertModel.from_pretrained("distilbert-base-uncased")
+        self.model_layer = DistilBertModel.from_pretrained("distilbert-base-cased")
         self.dense = torch.nn.Linear(768, 768)
         self.drop_out = torch.nn.Dropout(0.3)
         self.out_proj = torch.nn.Linear(768, 1)

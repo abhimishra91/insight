@@ -26,7 +26,7 @@ class SentimentProcessor:
             self.tokenizer = DistilBertTokenizerFast.from_pretrained(self.path)
 
         self.model.eval()
-        self.model.load_state_dict(torch.load(self.model_path, map_location=device))
+        self.model.load_state_dict(torch.load(self.model_path, map_location=device))        
 
         with open(self.mapping) as f:
             self.config = json.load(f)

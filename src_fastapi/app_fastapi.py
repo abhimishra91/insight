@@ -5,6 +5,7 @@ from pydantic import BaseModel
 from typing import Optional
 import uvicorn
 
+from sentimentpro import SentimentProcessor
 
 class Item(BaseModel):
     model: str
@@ -71,7 +72,13 @@ async def sentiment(item: Item):
         "confidence": confidence
     }
     """
-    pass
+    output_dict = dict()
+    sentiment_process = SentimentProcessor(model = item.model.lower())
+    text = item.text
+    perdiction, confidence = sentiment_process.inference(input_text = text)
+    output_dict["sentiment"] = perdiction
+    output_dict["confidence"] = confidence
+    return output_dict
 
 
 @app.post("v1/summ/predict")
