@@ -1,5 +1,4 @@
 # Importing Libraries for the server side script
-from typing import Optional
 from fastapi import FastAPI
 from pydantic import BaseModel
 from typing import Optional
