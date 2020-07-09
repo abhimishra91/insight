@@ -27,7 +27,7 @@ async def root():
 
 
 @app.get("/v1/{service}/info")
-async def get_models(service):
+async def get_models(service: str):
     with open("config.json") as f:
         config = json.load(f)
     model_list = config[service]
