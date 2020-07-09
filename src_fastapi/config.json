@@ -1,0 +1,19 @@
+{
+    "classification": [
+        "DistilBERT"
+    ],
+    "ner": [
+        "DistilBERT"
+    ],
+    "sentiment": [
+        "DistilBERT",
+        "RoBERTa"
+    ],
+    "summ": [
+        "T5"
+    ],
+    "qna": [
+        "T5"
+    ]
+
+}
