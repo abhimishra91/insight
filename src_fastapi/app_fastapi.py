@@ -2,7 +2,7 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 from typing import Optional
-import uvicorn
+import json
 
 from sentimentpro import SentimentProcessor
 from classificationpro import ClassProcessor
@@ -19,16 +19,24 @@ app = FastAPI()
 
 @app.get("/")
 async def root():
-    r"""
+    """
     Call to the Index/Root path of the API service
     :return: A simple key value pair to the calling service
     """
     return {"message": "Hello from Insight"}
 
 
+@app.get("/v1/{service}/info")
+async def get_models(service):
+    with open("config.json") as f:
+        config = json.load(f)
+    model_list = config[service]
+    return model_list
+
+
 @app.post("/v1/classification/predict")
 async def classification(item: Item):
-    r"""
+    """
     This is the API method for classification based models and related task.
     :param item: This is the payload that is sent to the server. The structure of item defined above
     :return: Label/category of the Input text and the confidence for the prediction.
@@ -47,8 +55,8 @@ async def classification(item: Item):
 
 
 @app.post("/v1/ner/predict")
-async def ner(item: Item):
-    r"""
+async def named_entity_recognition(item: Item):
+    """
     This function is used to perform Named Entity Recognition for the inpur text
     :param item: This is the payload that is sent to the server. The structure of item defined above
     :return: Returns a list of dictionary. It will be of the structure:
@@ -70,7 +78,7 @@ async def ner(item: Item):
 
 @app.post("/v1/sentiment/predict")
 async def sentiment(item: Item):
-    r"""
+    """
     This function will return the sentiment of the input text. Positive, negative along with the confidence for the sentiment.
     :param item: This is the payload that is sent to the server. The structure of item defined above
     :return: A dictionary for each input with sentiment and the confidence for the prediction.
@@ -89,8 +97,8 @@ async def sentiment(item: Item):
 
 
 @app.post("v1/summ/predict")
-async def summ(item: Item):
-    r"""
+async def summarization(item: Item):
+    """
         This function will return the sentiment of the input text. Positive, negative along with the confidence for the sentiment.
         :param item: This is the payload that is sent to the server. The structure of item defined above
         :return: A dictionary for each input with summary for the input text lenght of the new summary and lenght of the original input.
@@ -99,10 +107,10 @@ async def summ(item: Item):
             "lenght": len,
             "original text lenght": len
         }
-        """
+    """
     pass
 
 
 @app.post("v1/qna/predict")
-async def qna(item: Item):
+async def question_answering(item: Item):
     pass
