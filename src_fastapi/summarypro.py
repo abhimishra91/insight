@@ -62,6 +62,7 @@ class SummarizerProcessor:
         """
         self.text = input_text
         self.text = self.preprocess()
+        self.original_length = len(self.text)
         self.tokenized_inputs = self.tokenize(query)
         self.input_ids = self.tokenized_inputs["input_ids"]
         self.attention_mask = self.tokenized_inputs["attention_mask"]
@@ -80,4 +81,6 @@ class SummarizerProcessor:
             )
             for g in self.outputs
         ]
-        return str(self.preds)[2:-2]
+        self.preds = str(self.preds)[2:-2]
+        self.summ_length = len(self.preds)
+        return self.preds, self.summ_length, self.original_length
