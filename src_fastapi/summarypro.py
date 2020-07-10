@@ -34,7 +34,7 @@ class SummarizerProcessor:
         :return: Returns encoded text for inference
         """
         inputs = self.tokenizer.encode_plus(
-            self.clean_text,
+            self.text,
             query,
             add_special_tokens=True,
             max_length=512,
@@ -48,6 +48,9 @@ class SummarizerProcessor:
 
     def preprocess(self):
         # Remove quotes and add summarize to the text
+        self.text = self.text.replace('"', '')
+        self.text = self.text.replace('\n', ' ')
+        self.text = "summarize: " + self.text
         return self.text
 
     def inference(self, input_text: str, query: str = None):
@@ -58,7 +61,7 @@ class SummarizerProcessor:
         :return: correct category and confidence for that category
         """
         self.text = input_text
-        self.clean_text = self.preprocess()
+        self.text = self.preprocess()
         self.tokenized_inputs = self.tokenize(query)
         self.input_ids = self.tokenized_inputs["input_ids"]
         self.attention_mask = self.tokenized_inputs["attention_mask"]
