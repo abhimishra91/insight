@@ -6,6 +6,7 @@ import json
 
 from sentimentpro import SentimentProcessor
 from classificationpro import ClassProcessor
+from summarypro import SummarizerProcessor
 
 
 class Item(BaseModel):
@@ -96,7 +97,7 @@ async def sentiment(item: Item):
     return output_dict
 
 
-@app.post("v1/summ/predict")
+@app.post("/v1/summ/predict")
 async def summarization(item: Item):
     """
         This function will return the sentiment of the input text. Positive, negative along with the confidence for the sentiment.
@@ -104,13 +105,20 @@ async def summarization(item: Item):
         :return: A dictionary for each input with summary for the input text lenght of the new summary and lenght of the original input.
         {
             "summary": "Multiline summary",
-            "lenght": len,
-            "original text lenght": len
+            "length": len,
+            "original text length": len
         }
     """
-    pass
+    output_dict = dict()
+    summary_process = SummarizerProcessor(model=item.model.lower())
+    text = item.text
+    summary, summary_length, original_length = summary_process.inference(input_text=text)
+    output_dict["summary"] = summary
+    output_dict["summary length"] = summary_length
+    output_dict["original length"] = original_length
+    return output_dict
 
 
-@app.post("v1/qna/predict")
+@app.post("/v1/qna/predict")
 async def question_answering(item: Item):
     pass
