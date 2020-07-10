@@ -5,6 +5,7 @@ import json
 
 device = torch.device("cpu")
 
+
 class SummarizerProcessor:
     def __init__(self, model: str = None, service: str = "summ"):
         if model is None:
@@ -25,7 +26,6 @@ class SummarizerProcessor:
 
         self.model.eval()
         self.model.load_state_dict(torch.load(self.model_path, map_location=device))
-
 
     def tokenize(self, query: str = None):
         """
@@ -51,7 +51,6 @@ class SummarizerProcessor:
         # Remove quotes and add summarize to the text
         return self.text
 
-    
     def inference(self, input_text: str, query: str = None):
         """
         Method to perform the inference
@@ -65,13 +64,18 @@ class SummarizerProcessor:
         self.input_ids = self.tokenized_inputs["input_ids"]
         self.attention_mask = self.tokenized_inputs["attention_mask"]
         self.outputs = self.model.generate(
-            input_ids=self.input_ids, 
+            input_ids=self.input_ids,
             attention_mask=self.attention_mask,
-            max_length=150, 
+            max_length=150,
             num_beams=2,
-            repetition_penalty=2.5, 
-            length_penalty=1.0, 
-            early_stopping=True
+            repetition_penalty=2.5,
+            length_penalty=1.0,
+            early_stopping=True,
         )
-        self.preds = [self.tokenizer.decode(g, skip_special_tokens=True, clean_up_tokenization_spaces=True) for g in self.outputs]
+        self.preds = [
+            self.tokenizer.decode(
+                g, skip_special_tokens=True, clean_up_tokenization_spaces=True
+            )
+            for g in self.outputs
+        ]
         return str(self.preds)[2:-2]
