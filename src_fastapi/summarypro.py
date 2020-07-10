@@ -48,8 +48,8 @@ class SummarizerProcessor:
 
     def preprocess(self):
         # Remove quotes and add summarize to the text
-        self.text = self.text.replace('"', '')
-        self.text = self.text.replace('\n', ' ')
+        self.text = self.text.replace('"', "")
+        self.text = self.text.replace("\n", " ")
         self.text = "summarize: " + self.text
         return self.text
 

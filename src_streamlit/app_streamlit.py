@@ -9,7 +9,6 @@ class MakeCalls:
         self.url = url
         self.headers = {"Content-Type": "application/json"}
 
-
     def model_list(self, service: str) -> list:
         """
         Making an API request to backend service to get the details for each service. This function returns, list of names of trained models 
@@ -17,9 +16,8 @@ class MakeCalls:
         :return: List of names of trained models
         """
         model_list_url = self.url + f"/v1/{service}/info"
-        models = requests.get(url = model_list_url)
+        models = requests.get(url=model_list_url)
         return json.loads(models.text)
-
 
     def run_inference(self, service: str, model: str, text: str, query: str = None):
         """
@@ -37,8 +35,8 @@ class MakeCalls:
             url=inference_enpoint, headers=self.headers, data=json.dumps(payload)
         )
         return json.loads(result.text)
-        
-    
+
+
 def disaply_page(service: str, models: list):
     """
     This function is used to generate the page for each service. It returns,
@@ -79,19 +77,24 @@ def main():
         "Summarization": "summ",
         "Information Extraction": "qna",
     }
-    apicall = MakeCalls(url = "http://127.0.0.1:8000")
+    apicall = MakeCalls(url="http://127.0.0.1:8000")
     if service[service_options] == "about":
         st.header("This is the Project Insight about Page...")
     else:
-        models = apicall.model_list(service = service[service_options])
+        models = apicall.model_list(service=service[service_options])
         if service_options == "Information Extraction":
             model, input_text, query, run_button = disaply_page(service_options, models)
         else:
             model, input_text, run_button = disaply_page(service_options, models)
             query = str()
-        
+
         if run_button:
-            result = apicall.run_inference(service = service[service_options], model = model, text = input_text, query = query)
+            result = apicall.run_inference(
+                service=service[service_options],
+                model=model,
+                text=input_text,
+                query=query,
+            )
             st.write(result)
 
 
