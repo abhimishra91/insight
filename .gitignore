@@ -133,3 +133,4 @@ dmypy.json
 
 # Model Files
 *.bin
+*vectors
