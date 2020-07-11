@@ -57,7 +57,7 @@ def disaply_page(service: str, models: list):
 
 
 def main():
-    st.sidebar.header("Select the Natural Language Processing Service")
+    st.sidebar.header("Natural Language Processing Service")
     service_options = st.sidebar.radio(
         label="",
         options=[
