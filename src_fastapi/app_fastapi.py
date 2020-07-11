@@ -7,6 +7,7 @@ import json
 from sentimentpro import SentimentProcessor
 from classificationpro import ClassProcessor
 from summarypro import SummarizerProcessor
+from nerpro import NerProcessor
 
 
 class Item(BaseModel):
@@ -65,16 +66,21 @@ async def named_entity_recognition(item: Item):
         {
             text: entity_1,
             type: entity_type_1,
-            confidence: confidence_1
+            start: start_char,
+            end: end_char
         },
         {
             text: enttity_2,
             type: entity_type_2,
-            confidence: confidence_2
+            start: start_char,
+            end: end_char
         }
     ]
     """
-    pass
+    ner_process = NerProcessor(model=item.model.lower())
+    text = item.text
+    result = ner_process.inference(input_text=text)
+    return result
 
 
 @app.post("/v1/sentiment/predict")

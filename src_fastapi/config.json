@@ -3,7 +3,7 @@
         "DistilBERT"
     ],
     "ner": [
-        "DistilBERT"
+        "spaCy"
     ],
     "sentiment": [
         "DistilBERT",
