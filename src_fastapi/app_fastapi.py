@@ -106,7 +106,7 @@ async def sentiment(item: Item):
 @app.post("/v1/summ/predict")
 async def summarization(item: Item):
     """
-        This function will return the sentiment of the input text. Positive, negative along with the confidence for the sentiment.
+        This function will return the summary of the input text. Will be generated only for text greater than 150 words.
         :param item: This is the payload that is sent to the server. The structure of item defined above
         :return: A dictionary for each input with summary for the input text lenght of the new summary and lenght of the original input.
         {
@@ -116,11 +116,16 @@ async def summarization(item: Item):
         }
     """
     output_dict = dict()
-    summary_process = SummarizerProcessor(model=item.model.lower())
     text = item.text
-    summary, summary_length, original_length = summary_process.inference(
-        input_text=text
-    )
+    if len(text) < 150:
+        summary = text
+        summary_length = len(text)
+        original_length = len(text)
+    else:     
+        summary_process = SummarizerProcessor(model=item.model.lower())
+        summary, summary_length, original_length = summary_process.inference(
+            input_text=text
+        )
     output_dict["summary"] = summary
     output_dict["summary length"] = summary_length
     output_dict["original length"] = original_length
