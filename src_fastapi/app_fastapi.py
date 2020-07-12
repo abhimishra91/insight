@@ -80,7 +80,7 @@ async def named_entity_recognition(item: Item):
     ner_process = NerProcessor(model=item.model.lower())
     text = item.text
     result = ner_process.inference(input_text=text)
-    return result
+    return {"entites": result}
 
 
 @app.post("/v1/sentiment/predict")
