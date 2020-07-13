@@ -32,8 +32,9 @@ async def root():
 async def get_models(service: str):
     with open("config.json") as f:
         config = json.load(f)
-    model_list = config[service]
-    return model_list
+    model_info = config[service]
+    print(type(model_info))
+    return model_info
 
 
 @app.post("/v1/classification/predict")

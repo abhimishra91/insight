@@ -1,19 +1,36 @@
 {
-    "classification": [
-        "DistilBERT"
-    ],
-    "ner": [
-        "spaCy"
-    ],
-    "sentiment": [
-        "DistilBERT",
-        "RoBERTa"
-    ],
-    "summ": [
-        "T5"
-    ],
-    "qna": [
-        "T5"
-    ]
-
+    "sentiment": {
+        "model-1": {
+            "name": "DistilBERT",
+            "info": "Trained on the abc dataset with 2 classes"
+        },
+        "model-2":{
+            "name": "RoBERTa",
+            "info": "Trained on xyz data with 3 classes"
+        }
+    },
+    "classification": {
+        "model-1": {
+            "name": "DistilBERT",
+            "info": "Trained on the abc dataset with 2 classes"
+        }
+    },
+    "ner": {
+        "model-1": {
+            "name": "spaCy",
+            "info": "Trained on abc dataset"
+        }
+    },
+    "summ": {
+        "model-1": {
+            "name": "T5",
+            "info": "Trained on xyz data."
+        }
+    },
+    "qna": {
+        "model-1": {
+            "name": "T5",
+            "info": "Trained on xyz data."
+        }
+    }
 }
