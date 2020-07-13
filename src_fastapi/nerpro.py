@@ -4,6 +4,12 @@ import spacy
 
 class NerProcessor:
     def __init__(self, model: str = "spacy", service: str = "ner"):
+        """
+        Constructor to the class that does the Named Entity Recognition in the back end
+        :param model: Transfomer model that will be used for Named Entity Recognition
+        :param service: string to represent the service, this will be defaulted to "ner"
+        """
+        self.text = str()
         self.model_name = model
 
         # path to all the files that will be used for inference
@@ -21,11 +27,19 @@ class NerProcessor:
         pass
 
     def preprocess(self):
+        """
+        Method to preprocess the text for T5 model
+        :return: self.text
+        """
         self.text = self.text.replace('"', "")
         self.text = self.text.replace("\n", " ")
         return self.text
 
     def run_spacy_inference(self):
+        """
+        This method has been defined to perform inference for Spcy model
+        :return: list of dict
+        """
         result = dict()
         result_list = list()
         docs = self.model(self.text, disable=["tagger", "parser"])

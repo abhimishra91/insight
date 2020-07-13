@@ -5,11 +5,15 @@ import json
 
 
 class MakeCalls:
-    def __init__(self, url: str) -> None:
+    def __init__(self, url: str = "http://127.0.0.1:8000") -> None:
+        """
+        Constructor for the MakeCalls class. This class is used to perform API calls to the backend service.
+        :param url: URL of the server. Default value is set to local host: http://127.0.0.1:8000
+        """
         self.url = url
         self.headers = {"Content-Type": "application/json"}
 
-    def model_list(self, service: str) -> list:
+    def model_list(self, service: str) -> dict:
         """
         Making an API request to backend service to get the details for each service. This function returns, list of names of trained models 
         :param service: NLP service that is being used.
@@ -19,7 +23,7 @@ class MakeCalls:
         models = requests.get(url=model_info_url)
         return json.loads(models.text)
 
-    def run_inference(self, service: str, model: str, text: str, query: str = None):
+    def run_inference(self, service: str, model: str, text: str, query: str = None) -> json:
         """
         This function is used to send the api request for the actual service for the specifed model to the
         :param service: String for the actual service.
@@ -39,9 +43,9 @@ class MakeCalls:
 
 def disaply_page(service: str, models_dict: dict):
     """
-    This function is used to generate the page for each service. It returns,
+    This function is used to generate the page for each service.
     :param service: String of the service being selected from the side bar.
-    :param models: List of trained models that have been trained for this service.
+    :param models_dict: Dictionary of Model and its information. This is used to render elements of the page.
     :return: model, input_text run_button: Selected model from the drop down, input text by the user and run botton to kick off the process.
     """
     st.header(service)
@@ -87,17 +91,17 @@ def main():
         "Summarization": "summ",
         "Information Extraction": "qna",
     }
-    apicall = MakeCalls(url="http://127.0.0.1:8000")
+    apicall = MakeCalls()
     if service[service_options] == "about":
         st.header("This is the Project Insight about Page...")
     else:
-        models_info = apicall.model_list(service=service[service_options])
+        model_details = apicall.model_list(service=service[service_options])
         if service_options == "Information Extraction":
             model, input_text, query, run_button = disaply_page(
-                service_options, models_info
+                service_options, model_details
             )
         else:
-            model, input_text, run_button = disaply_page(service_options, models_info)
+            model, input_text, run_button = disaply_page(service_options, model_details)
             query = str()
 
         if run_button:

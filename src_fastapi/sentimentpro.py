@@ -58,12 +58,12 @@ class SentimentProcessor:
 
         return inputs
 
-    def lookup(self):
+    def lookup(self, pred):
         """
         Function to perform look up against the mapping json file. Only applicable for classificaiton and sentiment analysis.
         :return: Correct category for the prediction.
         """
-        return self.config[str(int(self.pred.item()))]
+        return self.config[str(int(pred.item()))]
 
     def inference(self, input_text: str, query: str = None):
         """
@@ -72,15 +72,15 @@ class SentimentProcessor:
         :param query: Input qwuery in case of QnA
         :return: correct category and confidence for that category
         """
-        self.tokenized_inputs = self.tokenize(input_text, query)
-        self.input_ids = self.tokenized_inputs["input_ids"]
-        self.attention_mask = self.tokenized_inputs["attention_mask"]
-        self.outputs = self.model(
-            input_ids=self.input_ids, attention_mask=self.attention_mask
+        tokenized_inputs = self.tokenize(input_text, query)
+        input_ids = tokenized_inputs["input_ids"]
+        attention_mask = tokenized_inputs["attention_mask"]
+        outputs = self.model(
+            input_ids=input_ids, attention_mask=attention_mask
         )
-        self._, self.pred = torch.max(self.outputs, dim=1)
-        sentiment_class = self.lookup()
-        self.conf, self.pos = torch.max(
-            torch.nn.functional.softmax(self.outputs, dim=1), dim=1
+        _, pred = torch.max(outputs, dim=1)
+        sentiment_class = self.lookup(pred)
+        conf, pos = torch.max(
+            torch.nn.functional.softmax(outputs, dim=1), dim=1
         )
-        return sentiment_class, self.conf.item()
+        return sentiment_class, conf.item()

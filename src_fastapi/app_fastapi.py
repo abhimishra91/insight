@@ -30,6 +30,11 @@ async def root():
 
 @app.get("/v1/{service}/info")
 async def get_models(service: str):
+    """
+    This method returns model details to the front end. Based on the service argument
+    :param service: Service can from one of the services such as: Classification, sentiment analysis etc.
+    :return:
+    """
     with open("config.json") as f:
         config = json.load(f)
     model_info = config[service]

@@ -26,10 +26,11 @@ class SummarizerProcessor:
         self.model.eval()
         self.model.load_state_dict(torch.load(self.model_path, map_location=device))
 
+        self.text = str()
+
     def tokenize(self, query: str = None):
         """
         Method to tokenize the textual input
-        :param input_text: Input text
         :param query: Query in case of Question Answering service.
         :return: Returns encoded text for inference
         """
@@ -62,25 +63,25 @@ class SummarizerProcessor:
         """
         self.text = input_text
         self.text = self.preprocess()
-        self.original_length = len(self.text)
-        self.tokenized_inputs = self.tokenize(query)
-        self.input_ids = self.tokenized_inputs["input_ids"]
-        self.attention_mask = self.tokenized_inputs["attention_mask"]
-        self.outputs = self.model.generate(
-            input_ids=self.input_ids,
-            attention_mask=self.attention_mask,
+        original_length = len(self.text)
+        tokenized_inputs = self.tokenize(query)
+        input_ids = tokenized_inputs["input_ids"]
+        attention_mask = tokenized_inputs["attention_mask"]
+        outputs = self.model.generate(
+            input_ids=input_ids,
+            attention_mask=attention_mask,
             max_length=150,
             num_beams=2,
             repetition_penalty=2.5,
             length_penalty=1.0,
             early_stopping=True,
         )
-        self.preds = [
+        preds = [
             self.tokenizer.decode(
                 g, skip_special_tokens=True, clean_up_tokenization_spaces=True
             )
-            for g in self.outputs
+            for g in outputs
         ]
-        self.preds = str(self.preds)[2:-2]
-        self.summ_length = len(self.preds)
-        return self.preds, self.summ_length, self.original_length
+        preds = str(preds)[2:-2]
+        summ_length = len(preds)
+        return preds, summ_length, original_length
