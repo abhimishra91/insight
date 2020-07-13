@@ -15,8 +15,8 @@ class MakeCalls:
         :param service: NLP service that is being used.
         :return: List of names of trained models
         """
-        model_list_url = self.url + f"/v1/{service}/info"
-        models = requests.get(url=model_list_url)
+        model_info_url = self.url + f"/v1/{service}/info"
+        models = requests.get(url=model_info_url)
         return json.loads(models.text)
 
     def run_inference(self, service: str, model: str, text: str, query: str = None):
@@ -37,7 +37,7 @@ class MakeCalls:
         return json.loads(result.text)
 
 
-def disaply_page(service: str, models: list):
+def disaply_page(service: str, models_dict: dict):
     """
     This function is used to generate the page for each service. It returns,
     :param service: String of the service being selected from the side bar.
@@ -45,7 +45,16 @@ def disaply_page(service: str, models: list):
     :return: model, input_text run_button: Selected model from the drop down, input text by the user and run botton to kick off the process.
     """
     st.header(service)
-    model: str = st.selectbox("Transformer Model", models)
+    model_name = list()
+    model_info = list()
+    for i in models_dict.keys():
+        model_name.append(models_dict[i]["name"])
+        model_info.append(models_dict[i]["info"])
+    st.sidebar.subheader("Model Information:")
+    for i in range(len(model_name)):
+        st.sidebar.subheader(model_name[i])
+        st.sidebar.info(model_info[i])
+    model: str = st.selectbox("Transformer Model", model_name)
     input_text: str = st.text_area("Enter Text here")
     if service == "Information Extraction":
         query: str = st.text_input("Enter query here.")
@@ -82,11 +91,11 @@ def main():
     if service[service_options] == "about":
         st.header("This is the Project Insight about Page...")
     else:
-        models = apicall.model_list(service=service[service_options])
+        models_info = apicall.model_list(service=service[service_options])
         if service_options == "Information Extraction":
-            model, input_text, query, run_button = disaply_page(service_options, models)
+            model, input_text, query, run_button = disaply_page(service_options, models_info)
         else:
-            model, input_text, run_button = disaply_page(service_options, models)
+            model, input_text, run_button = disaply_page(service_options, models_info)
             query = str()
 
         if run_button:
