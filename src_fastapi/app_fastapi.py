@@ -33,7 +33,6 @@ async def get_models(service: str):
     with open("config.json") as f:
         config = json.load(f)
     model_info = config[service]
-    print(type(model_info))
     return model_info
 
 

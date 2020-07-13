@@ -50,11 +50,11 @@ def disaply_page(service: str, models_dict: dict):
     for i in models_dict.keys():
         model_name.append(models_dict[i]["name"])
         model_info.append(models_dict[i]["info"])
-    st.sidebar.subheader("Model Information:")
+    st.sidebar.header("Model Information")
     for i in range(len(model_name)):
         st.sidebar.subheader(model_name[i])
         st.sidebar.info(model_info[i])
-    model: str = st.selectbox("Transformer Model", model_name)
+    model: str = st.selectbox("Select the Trained Model", model_name)
     input_text: str = st.text_area("Enter Text here")
     if service == "Information Extraction":
         query: str = st.text_input("Enter query here.")
@@ -67,7 +67,7 @@ def disaply_page(service: str, models_dict: dict):
 
 def main():
     st.title("Insight")
-    st.sidebar.header("Natural Language Processing Service")
+    st.sidebar.header("Select the NLP Service")
     service_options = st.sidebar.selectbox(
         label="",
         options=[

@@ -2,29 +2,29 @@
     "sentiment": {
         "model-1": {
             "name": "DistilBERT",
-            "info": "Trained on the abc dataset with 2 classes"
+            "info": "This as DistilBERT model that is fine-tuned on Sentiment Analysis for Financial News dataset. The News is classified into 2 categories: Positive, Negative. URL to the dataset: shorturl.at/kzM69"
         },
         "model-2":{
             "name": "RoBERTa",
-            "info": "Trained on xyz data with 3 classes"
+            "info": "This as DistilBERT model that is fine-tuned IMDB Reviews dataset. Reviews being classified into one of the 3 categories: Positive, Negative or Neutral. URL to the dataset: shorturl.at/gjD56"
         }
     },
     "classification": {
         "model-1": {
             "name": "DistilBERT",
-            "info": "Trained on the abc dataset with 2 classes"
+            "info": "This model is trained on News Aggregator Dataset from UC Irvin Machine Learning Repository. The news headlines are classified into 4 categories: Business, Science and Technology, Entertainment, Health. URL to the dataset is: shorturl.at/qzL56"
         }
     },
     "ner": {
         "model-1": {
             "name": "spaCy",
-            "info": "Trained on abc dataset"
+            "info": "This is a pre-trained model availabe from spaCy python library. URL to the model details: https://spacy.io/models/en"
         }
     },
     "summ": {
         "model-1": {
             "name": "T5",
-            "info": "Trained on xyz data."
+            "info": "This as T5 model fine-tuned for summarization task using the following dataset: shorturl.at/jnwMW "
         }
     },
     "qna": {
