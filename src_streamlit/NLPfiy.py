@@ -93,7 +93,9 @@ def main():
     else:
         models_info = apicall.model_list(service=service[service_options])
         if service_options == "Information Extraction":
-            model, input_text, query, run_button = disaply_page(service_options, models_info)
+            model, input_text, query, run_button = disaply_page(
+                service_options, models_info
+            )
         else:
             model, input_text, run_button = disaply_page(service_options, models_info)
             query = str()

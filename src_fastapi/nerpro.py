@@ -5,7 +5,7 @@ import spacy
 class NerProcessor:
     def __init__(self, model: str = "spacy", service: str = "ner"):
         self.model_name = model
-        
+
         # path to all the files that will be used for inference
         self.path = f"./{service}/{model}/"
         self.model_path = self.path + "model.bin"

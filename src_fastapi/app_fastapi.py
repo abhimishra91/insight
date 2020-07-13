@@ -121,7 +121,7 @@ async def summarization(item: Item):
         summary = text
         summary_length = len(text)
         original_length = len(text)
-    else:     
+    else:
         summary_process = SummarizerProcessor(model=item.model.lower())
         summary, summary_length, original_length = summary_process.inference(
             input_text=text
