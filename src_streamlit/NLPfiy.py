@@ -35,7 +35,6 @@ class MakeCalls:
         inference_enpoint = self.url + f"/v1/{service}/predict"
 
         payload = {"model": model.lower(), "text": text, "query": query.lower()}
-        print(payload)
         result = requests.post(
             url=inference_enpoint, headers=self.headers, data=json.dumps(payload)
         )
