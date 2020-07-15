@@ -6,7 +6,7 @@
         },
         "model-2":{
             "name": "RoBERTa",
-            "info": "This as DistilBERT model that is fine-tuned IMDB Reviews dataset. Reviews being classified into one of the 3 categories: Positive, Negative or Neutral. URL to the dataset: shorturl.at/gjD56"
+            "info": "This as RoBERTa model that is fine-tuned IMDB Reviews dataset. Reviews being classified into one of the 3 categories: Positive, Negative or Neutral. URL to the dataset: shorturl.at/gjD56"
         }
     },
     "classification": {
@@ -24,7 +24,7 @@
     "summ": {
         "model-1": {
             "name": "T5",
-            "info": "This as T5 model fine-tuned for summarization task using the following dataset: shorturl.at/jnwMW "
+            "info": "This as T5 model fine-tuned for summarization task. This model will only generate summaries if the text is greater than 150 words. The following dataset is used for fine-tuning: shorturl.at/jnwMW "
         }
     },
     "qna": {
