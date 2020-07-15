@@ -34,7 +34,8 @@ class MakeCalls:
         """
         inference_enpoint = self.url + f"/v1/{service}/predict"
 
-        payload = {"model": model.lower(), "text": text.lower(), "query": query.lower()}
+        payload = {"model": model.lower(), "text": text, "query": query.lower()}
+        print(payload)
         result = requests.post(
             url=inference_enpoint, headers=self.headers, data=json.dumps(payload)
         )
@@ -107,9 +108,9 @@ def main():
         if run_button:
             result = apicall.run_inference(
                 service=service[service_options],
-                model=model,
+                model=model.lower(),
                 text=input_text,
-                query=query,
+                query=query.lower(),
             )
             st.write(result)
 
