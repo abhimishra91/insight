@@ -23,7 +23,9 @@ class MakeCalls:
         models = requests.get(url=model_info_url)
         return json.loads(models.text)
 
-    def run_inference(self, service: str, model: str, text: str, query: str = None) -> json:
+    def run_inference(
+        self, service: str, model: str, text: str, query: str = None
+    ) -> json:
         """
         This function is used to send the api request for the actual service for the specifed model to the
         :param service: String for the actual service.
@@ -64,13 +66,11 @@ class Display:
             "Summarization": "summ",
             "Information Extraction": "qna",
         }
-        
 
     def static_elements(self):
         return self.service[self.service_options]
-        
 
-    def dynamic_element(self, service: str, models_dict: dict):
+    def dynamic_element(self, models_dict: dict):
         """
         This function is used to generate the page for each service.
         :param service: String of the service being selected from the side bar.
@@ -89,14 +89,12 @@ class Display:
             st.sidebar.markdown(model_info[i])
         model: str = st.selectbox("Select the Trained Model", model_name)
         input_text: str = st.text_area("Enter Text here")
-        if service == "qna":
+        if self.service == "qna":
             query: str = st.text_input("Enter query here.")
-            run_button: bool = st.button("Run")
-            return model, input_text, query, run_button
         else:
-            run_button: bool = st.button("Run")
-            return model, input_text, run_button   
-
+            query: str = "None"
+        run_button: bool = st.button("Run")
+        return model, input_text, query, run_button
 
 
 def main():
@@ -106,20 +104,21 @@ def main():
     apicall = MakeCalls()
     if service == "about":
         st.header("NLP as a Service")
-        st.write("The users can leverage fine-tuned language models to perform multiple downstream tasks, via GUI and API access.")
-        st.write("Insight backed in designed in a way that developers can also add-in their own fine-tuned models on different datasets and use them for prediction.")
-        st.write("To use this solution, select a service from the dropdown in the side bar. Details of pre-loaded  pre-trained model will be available based on the service.")
-        st.write("Fill in the text on which you want to run the service and then let the magic happen.")
+        st.write(
+            "The users can leverage fine-tuned language models to perform multiple downstream tasks, via GUI and API access."
+        )
+        st.write(
+            "Insight backed in designed in a way that developers can also add-in their own fine-tuned models on different datasets and use them for prediction."
+        )
+        st.write(
+            "To use this solution, select a service from the dropdown in the side bar. Details of pre-loaded  pre-trained model will be available based on the service."
+        )
+        st.write(
+            "Fill in the text on which you want to run the service and then let the magic happen."
+        )
     else:
         model_details = apicall.model_list(service=service)
-        if service == "qna":
-            model, input_text, query, run_button = page.dynamic_element(
-                service, model_details
-            )
-        else:
-            model, input_text, run_button = page.dynamic_element(service, model_details)
-            query = str()
-
+        model, input_text, query, run_button = page.dynamic_element(model_details)
         if run_button:
             result = apicall.run_inference(
                 service=service,
