@@ -23,7 +23,7 @@
     },
     "summ": {
         "model-1": {
-            "name": "T5",
+            "name": "T5-small",
             "info": "This as T5 model fine-tuned for summarization task. This model will only generate summaries if the text is greater than 150 words. [News Summary Dataset](https://www.kaggle.com/sunnysai12345/news-summary)"
         }
     },
