@@ -66,14 +66,10 @@ class SummarizerProcessor:
         original_length = len(self.text)
         tokenized_inputs = self.tokenize(query)
         input_ids = tokenized_inputs["input_ids"]
-        attention_mask = tokenized_inputs["attention_mask"]
         outputs = self.model.generate(
             input_ids=input_ids,
-            attention_mask=attention_mask,
-            max_length=150,
-            num_beams=2,
-            repetition_penalty=2.5,
-            length_penalty=1.0,
+            max_length=50,
+            num_beams=4,
             early_stopping=True,
         )
         preds = [
