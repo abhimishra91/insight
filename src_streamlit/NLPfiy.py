@@ -86,7 +86,7 @@ class Display:
         st.sidebar.header("Model Information")
         for i in range(len(model_name)):
             st.sidebar.subheader(model_name[i])
-            st.sidebar.markdown(model_info[i])
+            st.sidebar.info(model_info[i])
         model: str = st.selectbox("Select the Trained Model", model_name)
         input_text: str = st.text_area("Enter Text here")
         if self.service == "qna":
