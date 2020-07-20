@@ -120,12 +120,13 @@ def main():
         model_details = apicall.model_list(service=service)
         model, input_text, query, run_button = page.dynamic_element(model_details)
         if run_button:
-            result = apicall.run_inference(
-                service=service,
-                model=model.lower(),
-                text=input_text,
-                query=query.lower(),
-            )
+            with st.spinner(text = "Getting Results.."):
+                result = apicall.run_inference(
+                    service=service,
+                    model=model.lower(),
+                    text=input_text,
+                    query=query.lower(),
+                )
             st.write(result)
 
 
