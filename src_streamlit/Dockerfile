@@ -13,4 +13,3 @@ COPY . /src_streamlit
 EXPOSE 8501
 
 CMD ["streamlit", "run", "NLPfiy.py"]
-
