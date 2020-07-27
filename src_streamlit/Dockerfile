@@ -1,6 +1,6 @@
 FROM tiangolo/uvicorn-gunicorn:python3.7
 
-RUN mkdir /src_streamlit
+RUN mkdir / src_streamlit
 
 COPY requirements.txt /src_streamlit
 
