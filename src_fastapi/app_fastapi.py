@@ -3,7 +3,7 @@ from fastapi import FastAPI
 import json
 
 # Importing the models for standardizing the inputs to the service
-from model import Input, ServiceName
+from model import Input, ServiceName, ClassResponse, SentimentResponse, SummaryResponse, NERResponse
 
 # Importing various NLP processors to the app
 from sentimentpro import SentimentProcessor
@@ -41,7 +41,7 @@ async def get_models(service: ServiceName):
 
 
 # Path for classification service
-@app.post("/v1/classification/predict")
+@app.post("/v1/classification/predict", response_model=ClassResponse)
 async def classification(item: Input):
     """
     This is the API method for classification based models and related task.
@@ -62,7 +62,7 @@ async def classification(item: Input):
 
 
 # Path for named entity recognition service
-@app.post("/v1/ner/predict")
+@app.post("/v1/ner/predict", response_model=NERResponse)
 async def named_entity_recognition(item: Input):
     """
     This function is used to perform Named Entity Recognition for the inpur text
@@ -71,13 +71,13 @@ async def named_entity_recognition(item: Input):
     [
         {
             text: entity_1,
-            type: entity_type_1,
+            entity_type: entity_type_1,
             start: start_char,
             end: end_char
         },
         {
             text: enttity_2,
-            type: entity_type_2,
+            entity_type: entity_type_2,
             start: start_char,
             end: end_char
         }
@@ -90,7 +90,7 @@ async def named_entity_recognition(item: Input):
 
 
 # Path for sentiment analysis service
-@app.post("/v1/sentiment/predict")
+@app.post("/v1/sentiment/predict", response_model=SentimentResponse)
 async def sentiment(item: Input):
     """
     This function will return the sentiment of the input text. Positive, negative along with the confidence for the sentiment.
@@ -111,7 +111,7 @@ async def sentiment(item: Input):
 
 
 # Path for Summarization service
-@app.post("/v1/summ/predict")
+@app.post("/v1/summ/predict", response_model=SummaryResponse)
 async def summarization(item: Input):
     """
     This function will return the summary of the input text. Will be generated only for text greater than 150 words.
@@ -135,8 +135,8 @@ async def summarization(item: Input):
             input_text=text
         )
     output_dict["summary"] = summary
-    output_dict["summary length"] = summary_length
-    output_dict["original length"] = original_length
+    output_dict["summary_length"] = summary_length
+    output_dict["original_length"] = original_length
     return output_dict
 
 

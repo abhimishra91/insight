@@ -45,7 +45,7 @@ class NerProcessor:
         for ent in docs.ents:
             result = {
                 "text": ent.text,
-                "type": ent.label_,
+                "entity_type": ent.label_,
                 "start": ent.start_char,
                 "end": ent.end_char,
             }
