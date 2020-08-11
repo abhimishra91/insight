@@ -1,24 +1,22 @@
 # Importing Libraries for the server side script
 from fastapi import FastAPI
-from pydantic import BaseModel
-from typing import Optional
 import json
 
+# Importing the models for standardizing the inputs to the service
+from model import Input, ServiceName
+
+# Importing various NLP processors to the app
 from sentimentpro import SentimentProcessor
 from classificationpro import ClassProcessor
 from summarypro import SummarizerProcessor
 from nerpro import NerProcessor
 
 
-class Item(BaseModel):
-    model: str
-    text: str
-    query: Optional[str] = None
-
-
+# Declaring the App
 app = FastAPI()
 
 
+# Root path
 @app.get("/")
 async def root():
     """
@@ -28,12 +26,13 @@ async def root():
     return {"message": "Hello from Insight"}
 
 
+# Path to provide details of the services loaded in the backend. Details are obtained from the config json file
 @app.get("/v1/{service}/info")
-async def get_models(service: str):
+async def get_models(service: ServiceName):
     """
     This method returns model details to the front end. Based on the service argument
-    :param service: Service can from one of the services such as: Classification, sentiment analysis etc.
-    :return:
+    * :param service: Service can from one of the services such as: Classification, sentiment analysis etc.
+    * :return:
     """
     with open("config.json") as f:
         config = json.load(f)
@@ -41,12 +40,13 @@ async def get_models(service: str):
     return model_info
 
 
+# Path for classification service
 @app.post("/v1/classification/predict")
-async def classification(item: Item):
+async def classification(item: Input):
     """
     This is the API method for classification based models and related task.
-    :param item: This is the payload that is sent to the server. The structure of item defined above
-    :return: Label/category of the Input text and the confidence for the prediction.
+    * :param item: This is the payload that is sent to the server. The structure of item defined above
+    * :return: Label/category of the Input text and the confidence for the prediction.
     {
         "category":"category_1",
         "confidence":confidence
@@ -61,12 +61,13 @@ async def classification(item: Item):
     return output_dict
 
 
+# Path for named entity recognition service
 @app.post("/v1/ner/predict")
-async def named_entity_recognition(item: Item):
+async def named_entity_recognition(item: Input):
     """
     This function is used to perform Named Entity Recognition for the inpur text
-    :param item: This is the payload that is sent to the server. The structure of item defined above
-    :return: Returns a list of dictionary. It will be of the structure:
+    * :param item: This is the payload that is sent to the server. The structure of item defined above
+    * :return: Returns a list of dictionary. It will be of the structure:
     [
         {
             text: entity_1,
@@ -88,12 +89,13 @@ async def named_entity_recognition(item: Item):
     return {"entites": result}
 
 
+# Path for sentiment analysis service
 @app.post("/v1/sentiment/predict")
-async def sentiment(item: Item):
+async def sentiment(item: Input):
     """
     This function will return the sentiment of the input text. Positive, negative along with the confidence for the sentiment.
-    :param item: This is the payload that is sent to the server. The structure of item defined above
-    :return: A dictionary for each input with sentiment and the confidence for the prediction.
+    * :param item: This is the payload that is sent to the server. The structure of item defined above
+    * :return: A dictionary for each input with sentiment and the confidence for the prediction.
     {
         "sentiment": "positive/negative/neutral",
         "confidence": confidence
@@ -108,12 +110,13 @@ async def sentiment(item: Item):
     return output_dict
 
 
+# Path for Summarization service
 @app.post("/v1/summ/predict")
-async def summarization(item: Item):
+async def summarization(item: Input):
     """
-        This function will return the summary of the input text. Will be generated only for text greater than 150 words.
-        :param item: This is the payload that is sent to the server. The structure of item defined above
-        :return: A dictionary for each input with summary for the input text lenght of the new summary and lenght of the original input.
+    This function will return the summary of the input text. Will be generated only for text greater than 150 words.
+    * :param item: This is the payload that is sent to the server. The structure of item defined above
+    * :return: A dictionary for each input with summary for the input text lenght of the new summary and lenght of the original input.
         {
             "summary": "Multiline summary",
             "length": len,
@@ -137,6 +140,7 @@ async def summarization(item: Item):
     return output_dict
 
 
+# Path for qna service
 @app.post("/v1/qna/predict")
-async def question_answering(item: Item):
+async def question_answering(item: Input):
     pass
