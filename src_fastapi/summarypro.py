@@ -67,10 +67,7 @@ class SummarizerProcessor:
         tokenized_inputs = self.tokenize(query)
         input_ids = tokenized_inputs["input_ids"]
         outputs = self.model.generate(
-            input_ids=input_ids,
-            max_length=50,
-            num_beams=4,
-            early_stopping=True,
+            input_ids=input_ids, max_length=50, num_beams=4, early_stopping=True,
         )
         preds = [
             self.tokenizer.decode(

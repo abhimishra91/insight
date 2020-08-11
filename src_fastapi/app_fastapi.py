@@ -3,7 +3,14 @@ from fastapi import FastAPI
 import json
 
 # Importing the models for standardizing the inputs to the service
-from model import Input, ServiceName, ClassResponse, SentimentResponse, SummaryResponse, NERResponse
+from model import (
+    Input,
+    ServiceName,
+    ClassResponse,
+    SentimentResponse,
+    SummaryResponse,
+    NERResponse,
+)
 
 # Importing various NLP processors to the app
 from sentimentpro import SentimentProcessor

@@ -75,12 +75,8 @@ class SentimentProcessor:
         tokenized_inputs = self.tokenize(input_text, query)
         input_ids = tokenized_inputs["input_ids"]
         attention_mask = tokenized_inputs["attention_mask"]
-        outputs = self.model(
-            input_ids=input_ids, attention_mask=attention_mask
-        )
+        outputs = self.model(input_ids=input_ids, attention_mask=attention_mask)
         _, pred = torch.max(outputs, dim=1)
         sentiment_class = self.lookup(pred)
-        conf, pos = torch.max(
-            torch.nn.functional.softmax(outputs, dim=1), dim=1
-        )
+        conf, pos = torch.max(torch.nn.functional.softmax(outputs, dim=1), dim=1)
         return sentiment_class, conf.item()
