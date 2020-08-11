@@ -43,4 +43,4 @@ class NEREntity(BaseModel):
     end: int
 
 class NERResponse(BaseModel):
-    entitxes: List[NEREntity]
+    entites: List[NEREntity]
