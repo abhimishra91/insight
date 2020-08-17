@@ -117,7 +117,7 @@ The users can also directly use the backend fastapi server to have a command lin
 ## Example
 
 <p align="center">
-<img alt="Project Insight Deom" src="meta/streamlit-NLPfiy.gifmp4">
+<img alt="Project Insight Demo" src="meta/streamlit-NLPfiy.gif">
 </p>
 
 ## License
