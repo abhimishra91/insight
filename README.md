@@ -3,8 +3,9 @@
 <h2 align="center">NLP as a Service</h2>
 
 <p align="center">
-![Project Logo](meta/Insight.png)
+<img alt="Project Insight" src="meta/Insight.png">
 </p>
+
 <p align="center">
 <a href="https://github.com/abhimishra91/insightissues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/abhimishra91/insight"></a>
 <a href="https://github.com/abhimishra91/insight/network"><img alt="GitHub forks" src="https://img.shields.io/github/forks/abhimishra91/insight"></a>
