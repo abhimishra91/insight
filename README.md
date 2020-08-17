@@ -127,4 +127,4 @@ The users can also directly use the backend fastapi server to have a command lin
 
 ## License
 
-This project is licensed under the GPL-3.0 License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the GPL-3.0 License - see the [LICENSE.md](https://github.com/abhimishra91/insight/blob/master/LICENSE) file for details
