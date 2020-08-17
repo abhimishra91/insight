@@ -15,7 +15,6 @@
 </p>
 
 
-
 ## Introduction
 
 Project Insight is designed to create NLP as a service with code base for both front end GUI (**`streamlit`**)  and backend server (**`FastApi`**) the usage of transformers models on various downstream NLP task.
@@ -115,7 +114,11 @@ The users can also directly use the backend fastapi server to have a command lin
             self.tokenizer = BertTokenizerFast.from_pretrained(self.path)
         ```
 
-## Technology Used
+## Example
+
+<p align="center">
+<img alt="Project Insight Deom" src="meta/streamlit-NLPfiy.gifmp4">
+</p>
 
 ## License
 
