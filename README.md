@@ -7,11 +7,10 @@
 </p>
 
 <p align="center">
-<a href="https://github.com/abhimishra91/insightissues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/abhimishra91/insight"></a>
+<a href="https://github.com/abhimishra91/insight/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/abhimishra91/insight"></a>
 <a href="https://github.com/abhimishra91/insight/network"><img alt="GitHub forks" src="https://img.shields.io/github/forks/abhimishra91/insight"></a>
 <a href="https://github.com/abhimishra91/insight/stargazers"><img alt="Github Stars" src="https://img.shields.io/github/stars/abhimishra91/insight"></a>
-<a href="https://github.com/abhimishra91/insight/blob/master/LICENSE"><img alt="Code style: black" src="https://img.shields.io/github/license/abhimishra91/insight"></a>
-<a href="https://github.com/abhimishra91/insight/blob/master/LICENSE"><img alt="Code style: black" src="https://img.shields.io/github/license/abhimishra91/insight"></a>
+<a  href="https://github.com/abhimishra91/insight/blob/master/LICENSE"><img  alt="License"  src="https://img.shields.io/github/license/abhimishra91/insight"></a>
 <a href="https://github.com/abhimishra91/insight/"><img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg"></a>
 </p>
 
