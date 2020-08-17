@@ -40,13 +40,23 @@ The users can also directly use the backend fastapi server to have a command lin
 * **Python Code Base**: Built using `Fastapi` and `Streamlit` making the complete code base in Python.
 * **Expandable**: The backend is desinged in a way that it can be expanded with more Transformer based models and it will be available in the front end app automatically. 
 
+
+
 ## Installation
 
 * Clone the Repo.
 * Run the `Docker file` to create the Docker images.
 * Run the `Docker images` to start the front end and back end. service
 
+
+
 ## Project Details
+
+### Demonstration
+
+<p align="center">
+<img alt="Project Insight Demo" src="meta/streamlit-NLPfiy.gif">
+</p>
 
 ### Directory Details
 
@@ -114,11 +124,7 @@ The users can also directly use the backend fastapi server to have a command lin
             self.tokenizer = BertTokenizerFast.from_pretrained(self.path)
         ```
 
-## Example
-
-<p align="center">
-<img alt="Project Insight Demo" src="meta/streamlit-NLPfiy.gif">
-</p>
 
 ## License
 
+This project is licensed under the GPL-3.0 License - see the [LICENSE.md](LICENSE.md) file for details
