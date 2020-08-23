@@ -1,8 +1,8 @@
 import torch
 from transformers import RobertaTokenizerFast, DistilBertTokenizerFast
 import json
-from sentiment.distilbert.network import DistilBertClass
-from sentiment.roberta.network import RobertaClass
+from app.api.sentiment.distilbert.network import DistilBertClass
+from app.api.sentiment.roberta.network import RobertaClass
 
 device = torch.device("cpu")
 
@@ -17,7 +17,7 @@ class SentimentProcessor:
         if model is None:
             model = "distilbert"
         # path to all the files that will be used for inference
-        self.path = f"./{service}/{model}/"
+        self.path = f"./app/api/{model}/"
         # json file for mapping of network output to the correct category
         self.mapping = self.path + "mapping.json"
         self.model_path = self.path + "model.bin"

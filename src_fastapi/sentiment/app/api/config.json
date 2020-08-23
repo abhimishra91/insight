@@ -1,0 +1,10 @@
+{
+    "model-1": {
+        "name": "DistilBERT",
+        "info": "This as DistilBERT model that is fine-tuned on Sentiment Analysis for Financial News dataset. The News is classified into 2 categories: **Positive**, **Negative**. [Sentiment Dataset](https://www.kaggle.com/ankurzing/sentiment-analysis-for-financial-news)"
+    },
+    "model-2":{
+        "name": "RoBERTa",
+        "info": "This as RoBERTa model that is fine-tuned IMDB Reviews dataset. Reviews being classified into one of the 3 categories: **Positive**, **Negative** or **Neutral**. [IMDB Dataset](https://www.kaggle.com/lakshmi25npathi/imdb-dataset-of-50k-movie-reviews)"
+    }
+}
