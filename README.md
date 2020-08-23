@@ -81,15 +81,18 @@ The users can also directly use the backend fastapi server to have a command lin
     ```
 
 2. **Running the frontend app.**
+    - Front end is a **`WIP`** as a change in the backend architecture.
+    - Should be up in a few days.
+    <!---
     - Go to the `src_streamlit` folder
     - Create the docker image from the `Docker File`
     - Then execute the docker image to spin up a container.
-
     ```console  
     $ cd src_streamlit
-    src_streamlit:~$ sudo docker build -t streamlit_app
-    src_streamlit:~$ sudo docker run -d streamlit_app streamlit_app
+    src_streamlit:~$ sudo docker build -t streamlit_app .
+    src_streamlit:~$ sudo docker run -d --name streamlit_app streamlit_app
     ```
+    --->
 
 <a id='section03'></a>
 
