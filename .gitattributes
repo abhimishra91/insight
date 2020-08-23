@@ -1,5 +1,1 @@
-# Auto detect text files and perform LF normalization
-* text=auto
-*.bin filter=lfs diff=lfs merge=lfs -text
-*vectors filter=lfs diff=lfs merge=lfs -text
-vectors.* filter=lfs diff=lfs merge=lfs -text
+
