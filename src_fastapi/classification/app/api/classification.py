@@ -18,7 +18,6 @@ async def get_models():
     """
     with open("./app/api/config.json") as f:
         config = json.load(f)
-    # model_info = config[service]
     return config
 
 # Path for classification service
