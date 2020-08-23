@@ -1,0 +1,6 @@
+{
+    "model-1": {
+        "name": "DistilBERT",
+        "info": "This model is trained on News Aggregator Dataset from UC Irvin Machine Learning Repository. The news headlines are classified into 4 categories: **Business**, **Science and Technology**, **Entertainment**, **Health**. [New Dataset](https://archive.ics.uci.edu/ml/datasets/News+Aggregator)"
+    }
+}

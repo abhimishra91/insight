@@ -1,7 +1,7 @@
 import torch
 from transformers import DistilBertTokenizerFast
 import json
-from classification.distilbert.network import DistillBERTClass
+from app.api.distilbert.network import DistillBERTClass
 
 device = torch.device("cpu")
 
@@ -16,7 +16,7 @@ class ClassProcessor:
         if model is None:
             model = "distilbert"
         # path to all the files that will be used for inference
-        self.path = f"./{service}/{model}/"
+        self.path = f"./app/api/{model}/"
         # json file for mapping of network output to the correct category
         self.mapping = self.path + "mapping.json"
         self.model_path = self.path + "model.bin"
