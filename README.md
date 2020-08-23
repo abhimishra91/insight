@@ -19,6 +19,7 @@
 1. [Introduction](#section01)
     - [Features](#section01a)
 2. [Installation](#section02)
+    - [Running the Service](#section02a)
 3. [Project Details](#section03)
     - [Demonstration](#section03a)
     - [Directory Details](#section03b)
@@ -54,15 +55,41 @@ The users can also directly use the backend fastapi server to have a command lin
 
 * **Python Code Base**: Built using `Fastapi` and `Streamlit` making the complete code base in Python.
 * **Expandable**: The backend is desinged in a way that it can be expanded with more Transformer based models and it will be available in the front end app automatically. 
+* **Micro-Services**: The backend is designed with a microservices architecture, with dockerfile for each service and leveraging on Nginx as a reverse proxy to each independently running service.
+    - This makes it easy to update, manitain, start, stop individual NLP services.
 
 
 <a id='section02'></a>
+
 ## Installation
 
 * Clone the Repo.
-* Run the `Docker file` to create the Docker images.
-* Run the `Docker images` to start the front end and back end. service
+* Run the `Docker file` to spin up the `Streamlit` interface.
+* Run the `Docker Compose` to spin up the `Fastapi` based backend service.
 
+<a id='section02a'></a>
+
+### Running the Service
+
+1. **Running the backend service.**
+    - Go to the `src_fastapi` folder
+    - Run the `Docker Compose` comnand
+
+    ```console  
+    $ cd src_fastapi
+    src_fastapi:~$ sudo docker-compose up -d
+    ```
+
+2. **Running the frontend app.**
+    - Go to the `src_streamlit` folder
+    - Create the docker image from the `Docker File`
+    - Then execute the docker image to spin up a container.
+
+    ```console  
+    $ cd src_streamlit
+    src_streamlit:~$ sudo docker build -t streamlit_app
+    src_streamlit:~$ sudo docker run -d streamlit_app streamlit_app
+    ```
 
 <a id='section03'></a>
 
@@ -83,19 +110,21 @@ The users can also directly use the backend fastapi server to have a command lin
 * **Front End**: Front end code is in the `src_streamlit` folder. Along with the `Dockerfile` and `requirements.txt`
 
 * **Back End**: Back End code is in the `src_fastapi` folder.
-    * This folder contains script for each task: `classificationpro.py`, `nerpro.py`, `sentimentpro.py`...
-    * `app_fastapi.py` is the main application file that calls each servie based on the api call made by the front end.
+    * This folder contains directory for each task: `Classification`, `ner`, `summary`...etc
+    * Each NLP task has been implemented as a microservice, with its own fastapi server and requirements and Dockerfile so that they can be independently mantained and managed.
     * Each NLP task has its own folder and within each folder each trained model has 1 folder each. For example:
     ```
     - sentiment
-        - distilbert
-            - model.bin
-            - network.py
-            - tokeniser files
-        -roberta
-            - model.bin
-            - network.py
-            - tokeniser files
+        > app
+            > api
+                > distilbert
+                    - model.bin
+                    - network.py
+                    - tokeniser files
+                >roberta
+                    - model.bin
+                    - network.py
+                    - tokeniser files
     ```
     * For each new model under each service a new folder will have to be added.
     * Each folder model will need the following files:
@@ -111,14 +140,14 @@ The users can also directly use the backend fastapi server to have a command lin
 
 1. Fine Tune a transformer model for specific task. You can leverage the [transformers-tutorials](https://github.com/abhimishra91/transformers-tutorials)
 
-2. Savve the model files, tokenizer files and also create a network.py script if using a customized training network.
+2. Save the model files, tokenizer files and also create a `network.py` script if using a customized training network.
 
 3. Create a directory within the NLP task with `directory_name` as the `model name` and save all the files in this directory.
 
 4. Update the `config.json` with the model details and dataset details.
 
 5. Update the `<service>pro.py` with the correct imports and conditions where the model is imported. For example for a new Bert model in Classification Task, do the following:
-    * Create a new directory in `classification`. Directory name `bert`.
+    * Create a new directory in `classification/app/api/`. Directory name `bert`.
     * Update `config.json` with following:
         ```
         "classification": {
