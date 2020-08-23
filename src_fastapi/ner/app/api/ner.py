@@ -20,6 +20,7 @@ async def get_models():
         config = json.load(f)
     return config
 
+
 # Path for named entity recognition service
 @ner.post("/predict", response_model=NERResponse)
 async def named_entity_recognition(item: Input):

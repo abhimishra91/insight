@@ -10,7 +10,6 @@ class Input(BaseModel):
     query: Optional[str] = None
 
 
-
 # Model for NER Service response, first created a model for a single entity and followed by a response for the complete service
 class NEREntity(BaseModel):
     text: str

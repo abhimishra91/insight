@@ -20,6 +20,7 @@ async def get_models():
         config = json.load(f)
     return config
 
+
 # Path for classification service
 @classification.post("/predict", response_model=ClassResponse)
 async def classifiy(item: Input):

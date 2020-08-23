@@ -20,6 +20,7 @@ async def get_models():
         config = json.load(f)
     return config
 
+
 # Path for sentiment analysis service
 @sentiment.post("/predict", response_model=SentimentResponse)
 async def senti(item: Input):
