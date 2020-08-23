@@ -1,5 +1,4 @@
 import json
-from typing import List
 from fastapi import APIRouter
 
 from app.api.model import Input, SummaryResponse
