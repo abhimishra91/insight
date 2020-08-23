@@ -14,6 +14,19 @@
 <a href="https://github.com/abhimishra91/insight/"><img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg"></a>
 </p>
 
+## Contents
+
+1. [Introduction](#section01)
+    - [Features](#section01a)
+2. [Installation](#section02)
+3. [Project Details](#section03)
+    - [Demonstration](#section03a)
+    - [Directory Details](#section03b)
+    - [How to Add a new Model](#section03c)
+4. [License](#section04)
+
+
+<a id='section01'></a>
 
 ## Introduction
 
@@ -35,13 +48,15 @@ The user can select different models from the drop down to run the inference.
 
 The users can also directly use the backend fastapi server to have a command line inference. 
 
+<a id='section01a'></a>
+
 ### Features of the solution
 
 * **Python Code Base**: Built using `Fastapi` and `Streamlit` making the complete code base in Python.
 * **Expandable**: The backend is desinged in a way that it can be expanded with more Transformer based models and it will be available in the front end app automatically. 
 
 
-
+<a id='section02'></a>
 ## Installation
 
 * Clone the Repo.
@@ -49,14 +64,19 @@ The users can also directly use the backend fastapi server to have a command lin
 * Run the `Docker images` to start the front end and back end. service
 
 
+<a id='section03'></a>
 
 ## Project Details
+
+<a id='section03a'></a>
 
 ### Demonstration
 
 <p align="center">
 <img alt="Project Insight Demo" src="meta/streamlit-NLPfiy.gif">
 </p>
+
+<a id='section03b'></a>
 
 ### Directory Details
 
@@ -84,6 +104,8 @@ The users can also directly use the backend fastapi server to have a command lin
         * `network.py` Defining the class of the model if customised model used.
 
     * `config.json`: This file contains the details of the models in the backend and the dataset they are trained on.
+
+<a id='section03c'></a>
 
 ### How to Add a new Model
 
@@ -124,6 +146,7 @@ The users can also directly use the backend fastapi server to have a command lin
             self.tokenizer = BertTokenizerFast.from_pretrained(self.path)
         ```
 
+<a id='section04'></a>
 
 ## License
 
