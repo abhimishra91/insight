@@ -11,7 +11,7 @@ class SummarizerProcessor:
             model = "t5"
 
         # path to all the files that will be used for inference
-        self.path = f"./{service}/{model}/"
+        self.path = f".app/api/{model}"
         self.model_path = self.path + "model.bin"
         self.config_path = self.path + "config.json"
 
