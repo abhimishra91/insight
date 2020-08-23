@@ -1,8 +1,8 @@
 import torch
 from transformers import RobertaTokenizerFast, DistilBertTokenizerFast
 import json
-from app.api.sentiment.distilbert.network import DistilBertClass
-from app.api.sentiment.roberta.network import RobertaClass
+from app.api.distilbert.network import DistilBertClass
+from app.api.roberta.network import RobertaClass
 
 device = torch.device("cpu")
 
