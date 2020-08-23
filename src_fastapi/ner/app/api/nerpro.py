@@ -12,13 +12,13 @@ class NerProcessor:
         self.model_name = model
 
         # path to all the files that will be used for inference
-        self.path = f"./{service}/{model}/"
+        self.path = f"./app/api/{model}/"
         self.model_path = self.path + "model.bin"
         self.config_path = self.path + "config.json"
 
         # Selecting the correct model based on the passed madel input. Default t5
         if self.model_name == "spacy":
-            self.model = spacy.load("./ner/spacy/", disable=["tagger", "parser"])
+            self.model = spacy.load("./app/api/spacy/", disable=["tagger", "parser"])
         else:
             raise Exception("This model is not supported")
 

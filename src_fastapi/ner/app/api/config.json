@@ -1,0 +1,6 @@
+{
+    "model-1": {
+        "name": "spaCy",
+        "info": "This is a pre-trained model availabe from spaCy python library. URL to the model details: [spaCy](https://spacy.io/models/en)"
+    }
+}
