@@ -101,6 +101,12 @@ The users can also directly use the backend fastapi server to have a command lin
     src_streamlit:~$ streamlit run NLPfily.py
     ```
 
+3. **Access to Fastapi Documentation**: Since this is a microservice based design, every NLP task has its own seperate documentation
+    - News Classification: http://localhost:8080/api/v1/classification/docs
+    - Sentiment Analysis: http://localhost:8080/api/v1/sentiment/docs
+    - NER: http://localhost:8080/api/v1/ner/docs
+    - Summarization: http://localhost:8080/api/v1/summary/docs
+
 <a id='section03'></a>
 
 ## Project Details
