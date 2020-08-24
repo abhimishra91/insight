@@ -62,7 +62,7 @@ class Display:
             "News Classification": "classification",
             "Named Entity Recognition": "ner",
             "Sentiment Analysis": "sentiment",
-            "Summarization": "summ",
+            "Summarization": "summary",
         }
 
     def static_elements(self):
