@@ -64,7 +64,7 @@ The users can also directly use the backend fastapi server to have a command lin
 ## Installation
 
 * Clone the Repo.
-* Run the `Docker Compose` to spin up the `Fastapi` based backend service.
+* Run the `Docker Compose` to spin up the **Fastapi** based backend service.
 * Run the **Streamlit app** with the `streamlit run command`.
 
 <a id='section02a'></a>
