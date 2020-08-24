@@ -5,7 +5,7 @@ import json
 
 
 class MakeCalls:
-    def __init__(self, url: str = "http://localhost:8080") -> None:
+    def __init__(self, url: str = "http://localhost:8080/") -> None:
         """
         Constructor for the MakeCalls class. This class is used to perform API calls to the backend service.
         :param url: URL of the server. Default value is set to local host: http://localhost:8080
@@ -19,7 +19,7 @@ class MakeCalls:
         :param service: NLP service that is being used.
         :return: List of names of trained models
         """
-        model_info_url = self.url + f"/v1/{service}/info"
+        model_info_url = self.url + f"api/v1/{service}/info"
         models = requests.get(url=model_info_url)
         return json.loads(models.text)
 
@@ -34,7 +34,7 @@ class MakeCalls:
         :param query: Input query for Information extraction use case.
         :return: results from the inference done by the model.
         """
-        inference_enpoint = self.url + f"/v1/{service}/predict"
+        inference_enpoint = self.url + f"api/v1/{service}/predict"
 
         payload = {"model": model.lower(), "text": text, "query": query.lower()}
         result = requests.post(
