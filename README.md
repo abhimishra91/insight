@@ -64,8 +64,8 @@ The users can also directly use the backend fastapi server to have a command lin
 ## Installation
 
 * Clone the Repo.
-* Run the `Docker file` to spin up the `Streamlit` interface.
 * Run the `Docker Compose` to spin up the `Fastapi` based backend service.
+* Run the **Streamlit app** with the `streamlit run command`.
 
 <a id='section02a'></a>
 
@@ -81,10 +81,12 @@ The users can also directly use the backend fastapi server to have a command lin
     ```
 
 2. **Running the frontend app.**
+    <!---
     - Front end is a **`WIP`** as a change in the backend architecture.
     - Should be up in a few days.
-    <!---
+    --->
     - Go to the `src_streamlit` folder
+    <!---
     - Create the docker image from the `Docker File`
     - Then execute the docker image to spin up a container.
     ```console  
@@ -93,6 +95,11 @@ The users can also directly use the backend fastapi server to have a command lin
     src_streamlit:~$ sudo docker run -d --name streamlit_app streamlit_app
     ```
     --->
+    - Run the app with the streamlit run command
+    ```console  
+    $ cd src_streamlit
+    src_streamlit:~$ streamlit run NLPfily.py
+    ```
 
 <a id='section03'></a>
 
