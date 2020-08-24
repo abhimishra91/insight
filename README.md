@@ -19,7 +19,7 @@
 1. [Introduction](#section01)
     - [Features](#section01a)
 2. [Installation](#section02)
-    - [Running the Service](#section02a)
+    - [Setup and Documentation](#section02a)
 3. [Project Details](#section03)
     - [Demonstration](#section03a)
     - [Directory Details](#section03b)
@@ -69,7 +69,7 @@ The users can also directly use the backend fastapi server to have a command lin
 
 <a id='section02a'></a>
 
-### Running the Service
+### Setup and Documentation
 
 1. **Running the backend service.**
     - Go to the `src_fastapi` folder
