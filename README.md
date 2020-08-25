@@ -71,7 +71,11 @@ The users can also directly use the backend fastapi server to have a command lin
 
 ### Setup and Documentation
 
-1. **Running the backend service.**
+1. **Download the models**
+    - Download the models from [here](https://drive.google.com/drive/folders/1Lc7kvfNnMRgA7tkPR5zaSAoSjC2sCudI?usp=sharing)
+    - Save them in the specific model folders inside the `src_fastapi` folder.
+
+2. **Running the backend service.**
     - Go to the `src_fastapi` folder
     - Run the `Docker Compose` comnand
 
@@ -80,7 +84,7 @@ The users can also directly use the backend fastapi server to have a command lin
     src_fastapi:~$ sudo docker-compose up -d
     ```
 
-2. **Running the frontend app.**
+3. **Running the frontend app.**
     <!---
     - Front end is a **`WIP`** as a change in the backend architecture.
     - Should be up in a few days.
@@ -101,11 +105,12 @@ The users can also directly use the backend fastapi server to have a command lin
     src_streamlit:~$ streamlit run NLPfily.py
     ```
 
-3. **Access to Fastapi Documentation**: Since this is a microservice based design, every NLP task has its own seperate documentation
+4. **Access to Fastapi Documentation**: Since this is a microservice based design, every NLP task has its own seperate documentation
     - News Classification: http://localhost:8080/api/v1/classification/docs
     - Sentiment Analysis: http://localhost:8080/api/v1/sentiment/docs
     - NER: http://localhost:8080/api/v1/ner/docs
     - Summarization: http://localhost:8080/api/v1/summary/docs
+
 
 <a id='section03'></a>
 
@@ -165,7 +170,7 @@ The users can also directly use the backend fastapi server to have a command lin
 5. Update the `<service>pro.py` with the correct imports and conditions where the model is imported. For example for a new Bert model in Classification Task, do the following:
     * Create a new directory in `classification/app/api/`. Directory name `bert`.
     * Update `config.json` with following:
-        ```
+        ```json
         "classification": {
         "model-1": {
             "name": "DistilBERT",
@@ -180,12 +185,12 @@ The users can also directly use the backend fastapi server to have a command lin
     * Update `classificationpro.py` with the following snippets:
         
         **_Only if customized class used_**
-        ```
+        ```python
         from classification.bert import BertClass
         ```
 
         **_Section where the model is selected_**
-        ```
+        ```python
         if model == "bert":
             self.model = BertClass()
             self.tokenizer = BertTokenizerFast.from_pretrained(self.path)
