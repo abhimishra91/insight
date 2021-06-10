@@ -5,4 +5,4 @@ tokenizers==0.7.0
 torch==1.4.0
 json5==0.9.5
 pydantic==1.6.2
-fastapi==0.45.0
+fastapi==0.65.2
